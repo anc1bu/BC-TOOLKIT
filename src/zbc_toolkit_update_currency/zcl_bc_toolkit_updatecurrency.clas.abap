@@ -32,7 +32,11 @@ CLASS zcl_bc_toolkit_updatecurrency DEFINITION
       END OF deserialized_currency_item,
       deserialized_currency_items TYPE STANDARD TABLE OF  deserialized_currency_item WITH EMPTY KEY.
     CONSTANTS:
-      url TYPE string VALUE 'https://www.tcmb.gov.tr/kurlar/today.xml' ##NO_TEXT.
+      url           TYPE string VALUE 'https://www.tcmb.gov.tr/kurlar/today.xml' ##NO_TEXT,
+      currency_TRY  TYPE waers VALUE 'TRY',
+      forex_buying  TYPE kurst VALUE 'M',
+      forex_selling TYPE kurst VALUE 'B'.
+
     CLASS-METHODS get_value_from_iteration
       IMPORTING
         !name        TYPE string
@@ -162,11 +166,11 @@ CLASS zcl_bc_toolkit_updatecurrency IMPLEMENTATION.
          OR name EQ 'ForexSelling' .
 
       INSERT VALUE #( kurst = COND #( WHEN <deserialized_currency_item>-name EQ 'ForexBuying'
-                                      THEN 'M'
+                                      THEN forex_buying
                                       WHEN <deserialized_currency_item>-name EQ 'ForexSelling'
-                                      THEN 'B')
+                                      THEN forex_selling )
                       fcurr = <deserialized_currency_item>-kod
-                      tcurr = 'TRY'
+                      tcurr = currency_TRY
                       gdatu = date_internal
                       ukurs = <deserialized_currency_item>-value
                       ffact = 1
