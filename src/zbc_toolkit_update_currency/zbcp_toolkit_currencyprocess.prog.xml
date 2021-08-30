@@ -34,6 +34,18 @@
      <LANGUAGE>T</LANGUAGE>
      <TEXTPOOL>
       <item>
+       <ID>I</ID>
+       <KEY>001</KEY>
+       <ENTRY>Kur tablosu boş!</ENTRY>
+       <LENGTH>48</LENGTH>
+      </item>
+      <item>
+       <ID>I</ID>
+       <KEY>002</KEY>
+       <ENTRY>Kur bilgileri güncellenmiştir!</ENTRY>
+       <LENGTH>82</LENGTH>
+      </item>
+      <item>
        <ID>R</ID>
        <ENTRY>Merkez Bankasından Kurları Alma Programı</ENTRY>
        <LENGTH>70</LENGTH>
