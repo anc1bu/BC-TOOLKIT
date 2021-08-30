@@ -5,11 +5,7 @@ CLASS zcl_bc_toolkit_updatecurrency DEFINITION
 
   PUBLIC SECTION.
     TYPES:
-      tt_tcurr TYPE TABLE OF tcurr WITH EMPTY KEY .
-    DATA:
-      document   TYPE REF TO if_ixml_document,
-      tarih_date TYPE REF TO if_ixml_element,
-      messages   TYPE REF TO if_reca_message_list.
+    tt_tcurr TYPE TABLE OF tcurr WITH EMPTY KEY .
     METHODS constructor
       RAISING
         zcx_bc_toolkit_updatecurrency .
@@ -31,6 +27,12 @@ CLASS zcl_bc_toolkit_updatecurrency DEFINITION
         value TYPE string,
       END OF deserialized_currency_item,
       deserialized_currency_items TYPE STANDARD TABLE OF  deserialized_currency_item WITH EMPTY KEY.
+
+    DATA:
+      document   TYPE REF TO if_ixml_document,
+      tarih_date TYPE REF TO if_ixml_element,
+      messages   TYPE REF TO if_reca_message_list.
+
     CONSTANTS:
       url           TYPE string VALUE 'https://www.tcmb.gov.tr/kurlar/today.xml' ##NO_TEXT,
       currency_TRY  TYPE waers VALUE 'TRY',
