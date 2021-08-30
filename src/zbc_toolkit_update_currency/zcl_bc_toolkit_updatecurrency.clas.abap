@@ -1,4 +1,4 @@
-CLASS zcl_bc_toolkit_currencyprocess DEFINITION
+CLASS zcl_bc_toolkit_updatecurrency DEFINITION
   PUBLIC
   FINAL
   CREATE PUBLIC .
@@ -12,12 +12,12 @@ CLASS zcl_bc_toolkit_currencyprocess DEFINITION
       messages   TYPE REF TO if_reca_message_list.
     METHODS constructor
       RAISING
-        zcx_bc_toolkit_currencyprocess .
+        zcx_bc_toolkit_updatecurrency .
     METHODS get_tcurr
       RETURNING
         VALUE(tcurr) TYPE tt_tcurr
       RAISING
-        zcx_bc_toolkit_currencyprocess .
+        zcx_bc_toolkit_updatecurrency .
   PRIVATE SECTION.
     TYPES:
       BEGIN OF currency_item,
@@ -40,7 +40,7 @@ CLASS zcl_bc_toolkit_currencyprocess DEFINITION
       RETURNING
         VALUE(value) TYPE string
       RAISING
-        zcx_bc_toolkit_currencyprocess .
+        zcx_bc_toolkit_updatecurrency .
     CLASS-METHODS get_name_value_from_iteration
       IMPORTING
         !iterator                          TYPE REF TO if_ixml_node_iterator
@@ -48,17 +48,17 @@ CLASS zcl_bc_toolkit_currencyprocess DEFINITION
       RETURNING
         VALUE(deserialized_currency_items) TYPE deserialized_currency_items
       RAISING
-        zcx_bc_toolkit_currencyprocess .
+        zcx_bc_toolkit_updatecurrency .
     CLASS-METHODS get_currency_items
       IMPORTING
         !tarih_date           TYPE REF TO if_ixml_element
       RETURNING
         VALUE(currency_items) TYPE currency_items
       RAISING
-        zcx_bc_toolkit_currencyprocess .
+        zcx_bc_toolkit_updatecurrency .
 ENDCLASS.
 
-CLASS zcl_bc_toolkit_currencyprocess IMPLEMENTATION.
+CLASS zcl_bc_toolkit_updatecurrency IMPLEMENTATION.
   METHOD constructor.
 
     me->messages = cf_reca_message_list=>create( ).
@@ -134,7 +134,7 @@ CLASS zcl_bc_toolkit_currencyprocess IMPLEMENTATION.
     tarih_date = document->get_root_element( ).
 
     IF messages->is_empty( ) EQ abap_false.
-      RAISE EXCEPTION TYPE zcx_bc_toolkit_currencyprocess
+      RAISE EXCEPTION TYPE zcx_bc_toolkit_updatecurrency
         EXPORTING
           messages = messages.
     ENDIF.

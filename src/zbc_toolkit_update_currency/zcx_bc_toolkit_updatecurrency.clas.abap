@@ -1,4 +1,4 @@
-CLASS zcx_bc_toolkit_currencyprocess DEFINITION
+CLASS zcx_bc_toolkit_updatecurrency DEFINITION
   PUBLIC
   INHERITING FROM cx_static_check
   FINAL
@@ -32,7 +32,7 @@ CLASS zcx_bc_toolkit_currencyprocess DEFINITION
   PRIVATE SECTION.
 ENDCLASS.
 
-CLASS zcx_bc_toolkit_currencyprocess IMPLEMENTATION.
+CLASS zcx_bc_toolkit_updatecurrency IMPLEMENTATION.
 
 
   METHOD constructor ##ADT_SUPPRESS_GENERATION.

@@ -3,7 +3,7 @@
  <asx:abap xmlns:asx="http://www.sap.com/abapxml" version="1.0">
   <asx:values>
    <VSEOCLASS>
-    <CLSNAME>ZCL_BC_TOOLKIT_CURRENCYPROCESS</CLSNAME>
+    <CLSNAME>ZCL_BC_TOOLKIT_UPDATECURRENCY</CLSNAME>
     <LANGU>E</LANGU>
     <DESCRIPT>Get Currency from Central Bank</DESCRIPT>
     <STATE>1</STATE>

@@ -3,7 +3,7 @@
  <asx:abap xmlns:asx="http://www.sap.com/abapxml" version="1.0">
   <asx:values>
    <PROGDIR>
-    <NAME>ZBCP_TOOLKIT_CURRENCYPROCESS</NAME>
+    <NAME>ZBCP_TOOLKIT_UPDATECURRENCY</NAME>
     <SUBC>1</SUBC>
     <RSTAT>T</RSTAT>
     <RLOAD>E</RLOAD>
