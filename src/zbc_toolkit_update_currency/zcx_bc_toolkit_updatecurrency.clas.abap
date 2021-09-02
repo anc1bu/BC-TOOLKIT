@@ -27,7 +27,7 @@ CLASS zcx_bc_toolkit_updatecurrency DEFINITION
         !previous     LIKE previous OPTIONAL
         !error_type   TYPE bapi_mtype OPTIONAL
         !display_like TYPE bapi_mtype OPTIONAL
-        !messages     TYPE REF TO if_reca_message_list OPTIONAL .
+        !messages     TYPE REF TO if_reca_message_list .
   PROTECTED SECTION.
   PRIVATE SECTION.
 ENDCLASS.

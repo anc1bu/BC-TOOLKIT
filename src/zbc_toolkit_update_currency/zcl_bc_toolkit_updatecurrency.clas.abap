@@ -174,7 +174,7 @@ CLASS zcl_bc_toolkit_updatecurrency IMPLEMENTATION.
                       fcurr = <deserialized_currency_item>-kod
                       tcurr = currency_TRY
                       gdatu = date_internal
-                      ukurs = <deserialized_currency_item>-value
+                      ukurs = CONV #( <deserialized_currency_item>-value )
                       ffact = 1
                       tfact = 1 ) INTO TABLE tcurr.
     ENDLOOP.
