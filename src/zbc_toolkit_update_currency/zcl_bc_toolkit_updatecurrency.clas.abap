@@ -150,7 +150,8 @@ CLASS zcl_bc_toolkit_updatecurrency IMPLEMENTATION.
   METHOD get_tcurr.
 
     DATA: deserialized_currency_items TYPE deserialized_currency_items,
-          date_internal               TYPE gdatu_inv.
+          date_internal               TYPE gdatu_inv,
+          ukurs_internal              TYPE ukurs_curr.
 
     LOOP AT  get_currency_items( tarih_date ) ASSIGNING FIELD-SYMBOL(<currency_item>).
       INSERT LINES OF get_name_value_from_iteration( kod      = <currency_item>-kod
@@ -164,8 +165,15 @@ CLASS zcl_bc_toolkit_updatecurrency IMPLEMENTATION.
         output = date_internal.
 
     LOOP AT deserialized_currency_items ASSIGNING FIELD-SYMBOL(<deserialized_currency_item>)
-      WHERE name EQ 'ForexBuying'
-         OR name EQ 'ForexSelling' .
+      WHERE ( name EQ 'ForexBuying'
+         OR name EQ 'ForexSelling' )
+        AND value IS NOT INITIAL .
+
+      CALL FUNCTION 'CONVERSION_EXIT_EXCRT_INPUT'
+        EXPORTING
+          input  = <deserialized_currency_item>-value
+        IMPORTING
+          output = ukurs_internal.
 
       INSERT VALUE #( kurst = COND #( WHEN <deserialized_currency_item>-name EQ 'ForexBuying'
                                       THEN forex_buying
@@ -174,9 +182,9 @@ CLASS zcl_bc_toolkit_updatecurrency IMPLEMENTATION.
                       fcurr = <deserialized_currency_item>-kod
                       tcurr = currency_TRY
                       gdatu = date_internal
-                      ukurs = CONV #( <deserialized_currency_item>-value )
-                      ffact = 1
-                      tfact = 1 ) INTO TABLE tcurr.
+                      ukurs = ukurs_internal
+                      ffact = 0
+                      tfact = 0 ) INTO TABLE tcurr.
     ENDLOOP.
 
   ENDMETHOD.
