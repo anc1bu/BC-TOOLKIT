@@ -35,7 +35,7 @@ CLASS zcl_bc_toolkit_updatecurrency DEFINITION
 
     CONSTANTS:
       url           TYPE string VALUE 'https://www.tcmb.gov.tr/kurlar/today.xml' ##NO_TEXT,
-      currency_TRY  TYPE waers VALUE 'TRY',
+      currency_TRL  TYPE waers VALUE 'TRL',
       forex_buying  TYPE kurst VALUE 'M',
       forex_selling TYPE kurst VALUE 'B'.
 
@@ -169,6 +169,8 @@ CLASS zcl_bc_toolkit_updatecurrency IMPLEMENTATION.
          OR name EQ 'ForexSelling' )
         AND value IS NOT INITIAL .
 
+      CONDENSE <deserialized_currency_item>-value NO-GAPS.
+
       CALL FUNCTION 'CONVERSION_EXIT_EXCRT_INPUT'
         EXPORTING
           input  = <deserialized_currency_item>-value
@@ -180,7 +182,7 @@ CLASS zcl_bc_toolkit_updatecurrency IMPLEMENTATION.
                                       WHEN <deserialized_currency_item>-name EQ 'ForexSelling'
                                       THEN forex_selling )
                       fcurr = <deserialized_currency_item>-kod
-                      tcurr = currency_TRY
+                      tcurr = currency_TRL
                       gdatu = date_internal
                       ukurs = ukurs_internal
                       ffact = 0
